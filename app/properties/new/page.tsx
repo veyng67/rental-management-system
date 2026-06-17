@@ -15,7 +15,7 @@ export default function NewPropertyPage() {
 
     event.preventDefault();
 
-    await fetch("/api/properties", {
+    await fetch("http://localhost:3000/api/properties", {
       method: "POST",
 
       headers: {
