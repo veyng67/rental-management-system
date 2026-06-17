@@ -5,7 +5,7 @@ import DeleteButton from "../properties/components/DeleteButton";
 async function getProperties() {
 
   const response = await fetch(
-    "http://localhost:3000/api/properties",
+    "/api/properties",
     {
       cache: "no-store",
     }
