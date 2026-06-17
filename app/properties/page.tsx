@@ -2,8 +2,8 @@ export const dynamic = "force-dynamic";
 
 import DeleteButton from "../properties/components/DeleteButton";
 
-async function getProperties() {
 
+async function getProperties() {
   const response = await fetch(
     "http://localhost:3000/api/properties",
     {
@@ -15,11 +15,19 @@ async function getProperties() {
 }
 
 export default async function PropertiesPage() {
-
   const properties = await getProperties();
 
-  return (
+  const total = properties.length;
 
+  const available = properties.filter(
+    (p: any) => p.isAvailable
+  ).length;
+
+  const occupied = properties.filter(
+    (p: any) => !p.isAvailable
+  ).length;
+
+  return (
     <main className="p-10">
 
       <h1 className="text-3xl font-bold">
@@ -32,6 +40,31 @@ export default async function PropertiesPage() {
       >
         Добавить недвижимость
       </a>
+
+      <div className="mt-6 flex gap-4">
+
+        <div className="border p-3 rounded-lg w-30 h-26">
+          <p>Всего объектов</p>
+          <p className="text-2xl font-bold">
+            {total}
+          </p>
+        </div>
+
+        <div className="border border p-3 rounded-lg w-30 h-26">
+          <p>Свободно</p>
+          <p className="text-2xl font-bold text-green-600">
+            {available}
+          </p>
+        </div>
+
+        <div className="border border p-3 rounded-lg w-30 h-26">
+          <p>Занято</p>
+          <p className="text-2xl font-bold text-red-600">
+            {occupied}
+          </p>
+        </div>
+
+      </div>
 
       <div className="mt-8 grid gap-4">
 
