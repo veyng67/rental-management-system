@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "2-комнатная квартира",
+    "address": "Москва",
+    "price": 78000,
+    "isAvailable": true
+  },
+  {
+    "id": 2,
+    "title": "1-комнатная квартира",
+    "address": "Воронеж",
+    "price": 12000,
+    "isAvailable": false
+  },
+  {
+    "id": 3,
+    "title": "1-комнатная квартира",
+    "address": "СПБ",
+    "price": 100000,
+    "isAvailable": true
+  },
+  {
+    "id": 4,
+    "title": "4-комнатная квартира",
+    "address": "Омск",
+    "price": 120000,
+    "isAvailable": false
+  }
+]

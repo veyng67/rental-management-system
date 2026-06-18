@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { properties } from "@/app/lib/store";
+import { getProperties, saveProperties } from "@/app/lib/json-db";
 
 export async function GET() {
+  const properties = getProperties();
   return NextResponse.json(properties);
 }
 
 export async function POST(request: Request) {
-
+  const properties = getProperties();
   const body = await request.json();
 
   const newProperty = {
@@ -18,6 +19,7 @@ export async function POST(request: Request) {
   };
 
   properties.push(newProperty);
+  saveProperties(properties);
 
   return NextResponse.json(newProperty);
 }
