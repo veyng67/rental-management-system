@@ -17,7 +17,7 @@ async function getProperties() {
 export default async function PropertiesPage() {
   const properties = await getProperties();
 
-  const total = properties.length;
+  const total = properties.   length;
 
   const available = properties.filter(
     (p: any) => p.isAvailable
