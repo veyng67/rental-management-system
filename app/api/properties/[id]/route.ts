@@ -1,51 +1,30 @@
 import { NextResponse } from "next/server";
-import { properties } from "@/app/lib/store";
+import fs from "fs";
+import path from "path";
 
-function getIdFromUrl(req: Request) {
-  const url = new URL(req.url);
-  const parts = url.pathname.split("/");
-  return Number(parts[parts.length - 1]);
+const filePath = path.join(process.cwd(), "data/properties.json");
+
+function readData() {
+  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-export async function GET(req: Request) {
-  const id = getIdFromUrl(req);
-
-  const property = properties.find((item: any) => item.id === id);
-
-  if (!property) {
-    return NextResponse.json({ error: "Не найдено" }, { status: 404 });
-  }
-
-  return NextResponse.json(property);
+function writeData(data: any) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
-export async function PATCH(req: Request) {
-  const id = getIdFromUrl(req);
-  const body = await req.json();
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id);
 
-  const property = properties.find((item: any) => item.id === id);
+  const data = readData();
 
-  if (!property) {
-    return NextResponse.json({ error: "Не найдено" }, { status: 404 });
-  }
+  const filtered = data.filter(
+    (item: any) => item.id !== id
+  );
 
-  property.title = body.title;
-  property.address = body.address;
-  property.price = body.price;
-
-  return NextResponse.json(property);
-}
-
-export async function DELETE(req: Request) {
-  const id = getIdFromUrl(req);
-
-  const index = properties.findIndex((item: any) => item.id === id);
-
-  if (index === -1) {
-    return NextResponse.json({ error: "Не найдено" }, { status: 404 });
-  }
-
-  properties.splice(index, 1);
+  writeData(filtered);
 
   return NextResponse.json({ success: true });
 }

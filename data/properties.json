@@ -26,5 +26,33 @@
     "address": "Омск",
     "price": 120000,
     "isAvailable": false
+  },
+  {
+    "id": 1781925626349,
+    "title": "wer",
+    "address": "wer",
+    "price": 1212,
+    "isAvailable": true
+  },
+  {
+    "id": 1781925631224,
+    "title": "sfsd",
+    "address": "sdfsdf",
+    "price": 121212,
+    "isAvailable": true
+  },
+  {
+    "id": 1781925794367,
+    "title": "werwer",
+    "address": "werwer",
+    "price": 211212,
+    "isAvailable": true
+  },
+  {
+    "id": 1781926015227,
+    "title": "sdf",
+    "address": "sdf",
+    "price": 2212,
+    "isAvailable": true
   }
 ]
